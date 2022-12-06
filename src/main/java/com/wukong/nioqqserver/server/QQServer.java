@@ -1,7 +1,10 @@
 package com.wukong.nioqqserver.server;
 
+import com.wukong.nioqqclient.common.Message;
+import com.wukong.nioqqclient.common.MessageType;
 import com.wukong.nioqqclient.common.User;
 
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
@@ -31,14 +34,25 @@ public class QQServer {
                     ServerConnectClientThread serverConnectClientThread = new ServerConnectClientThread(socket, user.getUserId());
                     // 5.2 启动线程
                     serverConnectClientThread.start();
+                    // 5.3 添加线程到集合
+                    ManageServerConnectClientThread.addServerConnectClientThread(user.getUserId(), serverConnectClientThread);
                 }else {
                     //6. 登录失败
-
+                    Message message = new Message();
+                    message.setMesType(MessageType.MESSAGE_LOGIN_FAIL);
+                    oos.writeObject(message);
                 }
             }
 
         } catch (Exception e) {
             e.printStackTrace();
+        }finally {
+            // 释放流
+            try {
+                serverSocket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
     }
