@@ -57,7 +57,7 @@ public class QQView {
                             switch ('1') {
                                 case '1' :
                                     //这里老师准备写一个方法，来获取在线用户列表
-//                                    userClientService.onlineFriendList();
+                                    UserClientService.getOnlineUsers();
                                     break;
                                 case '2':
                                     System.out.println("请输入想对大家说的话: ");
@@ -83,7 +83,7 @@ public class QQView {
                                     break;
                                 case '9':
                                     //调用方法，给服务器发送一个退出系统的message
-//                                    userClientService.logout();
+                                    userClientService.logout();
                                     loop = false;
                                     break;
                             }

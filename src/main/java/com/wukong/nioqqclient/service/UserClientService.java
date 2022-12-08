@@ -13,12 +13,12 @@ import java.net.Socket;
  */
 public class UserClientService {
 
-    private User user = new User();
+    private static User user = new User();
 
-    private Socket socket;
+    private static Socket socket;
 
     // 根据userId 和 pwd 到服务器验证该用户是否合法
-    public boolean checkUser(String userId,String pwd)  {
+    public static boolean checkUser(String userId,String pwd)  {
         // 创建User对象
         user.setUserId(userId);
         user.setPasswd(pwd);
@@ -58,5 +58,45 @@ public class UserClientService {
         }
 
         return flag;
+    }
+
+    /**
+     * 获取在线用户列表
+     */
+    public static void getOnlineUsers(){
+        // 1.想服务端发送一个message消息，类型为：MESSAGE_GET_ONLINE_FRIEND
+        Message message = new Message();
+        message.setGetter(user.getUserId());
+        message.setMesType(MessageType.MESSAGE_GET_ONLINE_FRIEND);
+        try {
+        // 2. 发送给服务端
+            ClientConnectServerThread connectServerThread =  ManageClientConnectServerThread.getConnectServerThread(user.getUserId());
+            Socket socket = connectServerThread.getSocket();
+            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+            oos.writeObject(message);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    // 退出系统
+    public void logout() {
+        try {
+            Message message = new Message();
+            message.setMesType(MessageType.MESSAGE_CLIENT_EXIT);
+            message.setSender(user.getUserId()); // 指定要退出的客户端
+            // 发送socket
+            Socket socket = ManageClientConnectServerThread.getConnectServerThread(user.getUserId()).getSocket();
+            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+            oos.writeObject(message);
+            System.out.println(user.getUserId() + "退出了系统...");
+            System.exit(0); // 结束进程
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }

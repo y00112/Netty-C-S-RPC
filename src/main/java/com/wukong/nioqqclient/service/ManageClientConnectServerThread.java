@@ -15,7 +15,7 @@ public class ManageClientConnectServerThread {
     }
 
     // 根据userID 获得指定的线程Id
-    public ClientConnectServerThread getConnectServerThread(String userId){
+    public static ClientConnectServerThread getConnectServerThread(String userId){
         return hashMap.get(userId);
     }
 
