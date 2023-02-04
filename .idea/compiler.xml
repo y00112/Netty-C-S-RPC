@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="netty-helloworld" />
+        <module name="lab-04-rabbitmq-demo" />
         <module name="nio-netty" />
       </profile>
     </annotationProcessing>
