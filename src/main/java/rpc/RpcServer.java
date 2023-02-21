@@ -10,6 +10,7 @@ import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 import lombok.extern.slf4j.Slf4j;
 import rpc.handler.RpcRequestMessageHandler;
+import rpc.message.RpcMessageCodec;
 import rpc.message.RpcRequestMessage;
 import webchat.protocol.MessageCodec;
 import webchat.protocol.ProtocolFrameDecoder;
@@ -25,7 +26,7 @@ public class RpcServer {
         NioEventLoopGroup boss = new NioEventLoopGroup();
         NioEventLoopGroup worker = new NioEventLoopGroup();
         LoggingHandler LOGGING_HANDLER = new LoggingHandler(LogLevel.INFO);
-        MessageCodec MESSAGE_CODEC = new MessageCodec();
+        RpcMessageCodec RPC_MESSAGE_CODEC = new RpcMessageCodec();
 
         // rpc 请求消息处理器，
         RpcRequestMessageHandler RPC_HANDLER = new RpcRequestMessageHandler();
@@ -38,7 +39,7 @@ public class RpcServer {
                 protected void initChannel(SocketChannel ch) throws Exception {
                     ch.pipeline().addLast(new ProtocolFrameDecoder());
                     ch.pipeline().addLast(LOGGING_HANDLER);
-                    ch.pipeline().addLast(MESSAGE_CODEC);
+                    ch.pipeline().addLast(RPC_MESSAGE_CODEC);
                     ch.pipeline().addLast(RPC_HANDLER);
                 }
             });

@@ -2,6 +2,8 @@ package webchat.message;
 
 
 import lombok.Data;
+import rpc.message.RpcRequestMessage;
+import rpc.message.RpcResponseMessage;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -58,7 +60,7 @@ public abstract class Message implements Serializable {
         messageClasses.put(GroupMembersRequestMessage, GroupMembersRequestMessage.class);
         messageClasses.put(GroupMembersResponseMessage, GroupMembersResponseMessage.class);
 //
-//        messageClasses.put(RPC_MESSAGE_TYPE_REQUEST, RpcRequestMessage.class);
-//        messageClasses.put(RPC_MESSAGE_TYPE_RESPONSE, RpcResponseMessage.class);
+        messageClasses.put(RPC_MESSAGE_TYPE_REQUEST, RpcRequestMessage.class);
+        messageClasses.put(RPC_MESSAGE_TYPE_RESPONSE, RpcResponseMessage.class);
     }
 }

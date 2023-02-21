@@ -26,9 +26,9 @@ public class Config {
     public static Serializer.Algorithm getSerializerAlgorithm(){
         String value = properties.getProperty("serializer.algorithm");
         if (value == null){
-            return Serializer.Algorithm.JAVA;
+            return Serializer.Algorithm.Java;
         }else {
-            return Serializer.Algorithm.JSON;
+            return Serializer.Algorithm.Json;
         }
     }
 }

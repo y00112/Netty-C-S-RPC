@@ -80,5 +80,7 @@ public class MessageCodec extends ByteToMessageCodec<Message> {
 //        log.info("{},{},{},{},{},{}",magicNum,version,serializableType,messageType,sequenceId,length);
 //        log.info("{}",message);
         out.add(message);
+
+
     }
 }
