@@ -1,4 +1,4 @@
-package webchat.amessage;
+package job.amessage;
 
 import lombok.Data;
 
