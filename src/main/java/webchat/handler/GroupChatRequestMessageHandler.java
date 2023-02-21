@@ -6,7 +6,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import webchat.message.GroupChatRequestMessage;
 import webchat.message.GroupChatResponseMessage;
-import webchat.server.session.GroupSessionFactory;
+import webchat.session.GroupSessionFactory;
 
 import java.util.List;
 

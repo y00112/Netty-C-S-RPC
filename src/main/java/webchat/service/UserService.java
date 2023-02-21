@@ -1,4 +1,4 @@
-package webchat.server.service;
+package webchat.service;
 
 /**
  * 用户管理接口

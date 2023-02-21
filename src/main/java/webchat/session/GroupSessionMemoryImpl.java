@@ -1,4 +1,4 @@
-package webchat.server.session;
+package webchat.session;
 
 import io.netty.channel.Channel;
 

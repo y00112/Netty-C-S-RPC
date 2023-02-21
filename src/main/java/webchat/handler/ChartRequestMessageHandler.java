@@ -6,7 +6,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import webchat.message.ChatRequestMessage;
 import webchat.message.ChatResponseMessage;
-import webchat.server.session.SessionFactory;
+import webchat.session.SessionFactory;
 
 
 /**

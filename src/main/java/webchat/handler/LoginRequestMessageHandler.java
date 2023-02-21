@@ -4,16 +4,11 @@ import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import lombok.extern.slf4j.Slf4j;
-import webchat.ChatServer;
 import webchat.message.LoginRequestMessage;
 import webchat.message.LoginResponseMessage;
-import webchat.server.service.UserService;
-import webchat.server.service.UserServiceFactory;
-import webchat.server.service.UserServiceMemoryImpl;
-import webchat.server.session.SessionFactory;
-
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import webchat.service.UserService;
+import webchat.service.UserServiceMemoryImpl;
+import webchat.session.SessionFactory;
 
 /**
  * @author: 小山

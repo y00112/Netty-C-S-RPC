@@ -1,4 +1,4 @@
-package webchat.server.service;
+package webchat.service;
 
 public abstract class UserServiceFactory {
 

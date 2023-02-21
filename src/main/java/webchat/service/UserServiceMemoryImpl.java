@@ -1,4 +1,4 @@
-package webchat.server.service;
+package webchat.service;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

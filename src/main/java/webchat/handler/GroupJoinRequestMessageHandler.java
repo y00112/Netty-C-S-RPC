@@ -1,14 +1,12 @@
 package webchat.handler;
 
-import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import webchat.message.GroupJoinRequestMessage;
 import webchat.message.GroupJoinResponseMessage;
-import webchat.server.session.Group;
-import webchat.server.session.GroupSessionFactory;
-import webchat.server.session.SessionFactory;
+import webchat.session.Group;
+import webchat.session.GroupSessionFactory;
 
 /**
  * @author: 小山

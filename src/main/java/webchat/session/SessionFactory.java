@@ -1,4 +1,4 @@
-package webchat.server.session;
+package webchat.session;
 
 public abstract class SessionFactory {
 
