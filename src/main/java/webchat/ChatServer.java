@@ -30,7 +30,7 @@ public class ChatServer {
                 @Override
                 protected void initChannel(SocketChannel ch) throws Exception {
                     ch.pipeline().addLast(new LengthFieldBasedFrameDecoder(1024, 12, 4, 0, 0));
-                    ch.pipeline().addLast(LOGGING_HANDLER);
+//                    ch.pipeline().addLast(LOGGING_HANDLER);
                     ch.pipeline().addLast( new MessageCodec());
                 }
             });
