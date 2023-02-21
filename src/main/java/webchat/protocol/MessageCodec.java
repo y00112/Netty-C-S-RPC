@@ -4,6 +4,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageCodec;
 import lombok.extern.slf4j.Slf4j;
+import webchat.config.Config;
 import webchat.message.Message;
 
 import java.io.ByteArrayInputStream;
@@ -28,7 +29,7 @@ public class MessageCodec extends ByteToMessageCodec<Message> {
         // 2.字节的版本
         out.writeByte(1);
         // 3.序列化算法 0 jdk 1 json
-        out.writeByte(0);
+        out.writeByte(Config.getSerializerAlgorithm().ordinal());
         // 4.字节的指令类型
         out.writeByte(msg.getMessageType());
         // 5.请求序号 4个字节
@@ -36,11 +37,11 @@ public class MessageCodec extends ByteToMessageCodec<Message> {
         // 对其填充用的
         out.writeByte(0xff);
         // 6.获取内容的字节数组
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        ObjectOutputStream oos = new ObjectOutputStream(bos);
-        oos.writeObject(msg);
-        byte[] bytes = bos.toByteArray();
-
+//        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+//        ObjectOutputStream oos = new ObjectOutputStream(bos);
+//        oos.writeObject(msg);
+        // 6. 序列化
+        byte[] bytes =  Config.getSerializerAlgorithm().serializer(msg);
         // 7.长度
         out.writeInt(bytes.length);
 
@@ -70,14 +71,14 @@ public class MessageCodec extends ByteToMessageCodec<Message> {
         // 8.内容
         byte[] bytes = new byte[length];
         ByteBuf byteBuf = in.readBytes(bytes, 0, length);
-        // 反序列化
+        // 1.1查询反序列化的算法
+        Serializer.Algorithm serializer = Serializer.Algorithm.values()[serializableType];
+        // 1.2查询具体的消息类型
+        Class<?> aClass = Message.getMessageClass(messageType);
+        Object message = serializer.deserializer(aClass, bytes);
 
-            ObjectInputStream ois = new ObjectInputStream(new ByteArrayInputStream(bytes));
-            Message message = (Message) ois.readObject();
-
-
-        log.info("{},{},{},{},{},{}",magicNum,version,serializableType,messageType,sequenceId,length);
-        log.info("{}",message);
+//        log.info("{},{},{},{},{},{}",magicNum,version,serializableType,messageType,sequenceId,length);
+//        log.info("{}",message);
         out.add(message);
     }
 }
