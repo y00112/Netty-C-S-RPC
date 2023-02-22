@@ -1,6 +1,6 @@
 # Netty-C/S-RPC
 
->使用 Netty自定义协议 实现的了 Client-Server-Client 的即使通讯功能，以及 Rpc 远程调用协议。
+>使用 Netty自定义协议 实现的了 Client-Server-Client 的即时通讯功能，以及 Rpc 远程调用协议。
 
 目录结构
 
@@ -14,7 +14,7 @@
     │  │  ├─message      // netty-rpc 请求响应实体
     │  │  ├─service      // 模拟第三方接口
     │  │  └─util         
-    │  └─webchat         // 即使通讯
+    │  └─webchat         // 即时通讯
     │      ├─config      
     │      ├─handler     // netty 客户端与服务端业务处理器
     │      ├─message     // netty 客户端与服务端请求与相应消息实体
