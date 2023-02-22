@@ -23,6 +23,7 @@ public class RpcRequestMessageHandler extends SimpleChannelInboundHandler<RpcReq
 
         // 1. 相应信息
         RpcResponseMessage response = new RpcResponseMessage();
+        response.setSequenceId(message.getSequenceId());
 
         try {
             HelloService service =
@@ -37,7 +38,7 @@ public class RpcRequestMessageHandler extends SimpleChannelInboundHandler<RpcReq
 
         } catch (Exception e) {
             e.printStackTrace();
-            response.setExceptionValue(e);
+            response.setExceptionValue(new Exception("远程调用出错："+ e.getCause().getMessage()));
         }
 
         ctx.writeAndFlush(response);

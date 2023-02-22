@@ -69,6 +69,7 @@ public interface Serializer {
     }
 
 
+    // Gson 类型转换器
     class ClassCodec implements JsonSerializer<Class<?>>, JsonDeserializer<Class<?>> {
 
         @Override
